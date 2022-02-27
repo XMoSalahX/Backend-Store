@@ -9,16 +9,23 @@
 ### You need to add .env in root
 
 POSTGRS_HOST=localhost  
-POSTGRS_DB=store
-POSTGRS_USER=Mohammed_Salah
-POSTGRS_PASSWORD=Mohammed123#
-POSTGRS_USER_TEST=Mo_Test
-POSTGRS_DB_TEST=Data_Test
-ENV=dev
-PORT=8002
-BCRYPT_PASSWORD=bla-bla-bla-mo-salah
-SALT_ROUNDS=10
-SECRET_KEY=MoSalah
+POSTGRS_DB=store  
+POSTGRS_USER=Mohammed_Salah  
+POSTGRS_PASSWORD=Mohammed123#  
+POSTGRS_USER_TEST=Mo_Test  
+POSTGRS_DB_TEST=Data_Test  
+ENV=dev  
+PORT=8002  
+BCRYPT_PASSWORD=bla-bla-bla-mo-salah  
+SALT_ROUNDS=10  
+SECRET_KEY=MoSalah  
+
+---
+
+**NOTE**
+Don't forget to delete the blank spaces after each variable in the environment.
+
+---
 
 ---
 
