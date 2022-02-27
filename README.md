@@ -8,7 +8,7 @@
 
 ### You need to add .env in root
 
-POSTGRS_HOST=localhost
+POSTGRS_HOST=localhost  
 POSTGRS_DB=store
 POSTGRS_USER=Mohammed_Salah
 POSTGRS_PASSWORD=Mohammed123#
