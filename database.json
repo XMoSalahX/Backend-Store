@@ -1,0 +1,18 @@
+{
+    "dev": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "store",
+        "user": "Mohammed_Salah",
+        "password": "Mohammed123#",
+        "port": "8002"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "Data_Test",
+        "user": "Mo_Test",
+        "password": "Mohammed123#",
+        "port": "8002"
+    }
+}
