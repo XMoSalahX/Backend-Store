@@ -101,6 +101,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 
+![Database schema](https://i.ibb.co/JqFg4JP/Untitled-1.png)
+
 #### Product
 
                                      Table "public.product"
