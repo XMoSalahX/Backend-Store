@@ -14,7 +14,7 @@ describe("Ckeck all Endpoint status:", function () {
       password: "Mohammed123#",
     });
     expect(response.status).toBe(200);
-  });
+  })
 
   it('The connection to the endpoint "/authuser" has been successful.', async () => {
     const response = await request.post("/authuser");
