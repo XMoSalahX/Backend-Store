@@ -28,6 +28,7 @@ const Make_Order = async (req: Request, res: Response) => {
     const token: string = authHeader.split(" ")[1];
     jwt.verify(token, process.env.SECRET_KEY as string);
     const confirm = await order.Make_Order(req.body.orderId);
+    res.status(200);
     res.json(confirm);
   } catch (err) {
     throw new Error("Error happen in make order fun in handeler." + err);

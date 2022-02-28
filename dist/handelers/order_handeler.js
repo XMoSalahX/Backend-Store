@@ -39,6 +39,7 @@ const Make_Order = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const token = authHeader.split(" ")[1];
         jsonwebtoken_1.default.verify(token, process.env.SECRET_KEY);
         const confirm = yield order.Make_Order(req.body.orderId);
+        res.status(200);
         res.json(confirm);
     }
     catch (err) {
