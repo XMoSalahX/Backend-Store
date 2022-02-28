@@ -11,18 +11,30 @@
 
 - In psql terminal:
 
-* To create store database, write the following command:
-  CREATE DATABASE store;
-* To create Data_Test database, write the following command:
-  CREATE DATABASE "Data_Test";
-* To create user with password for production database, write the following command:
-  CREATE USER "Mohammed_Salah" WITH PASSWORD 'Mohammed123#';
-* To create user with password for development database, write the following command:
-  CREATE USER "Mo_Test" WITH PASSWORD 'Mohammed123#';
-* To make connection between user and production database, write the following command:
-  GRANT ALL PRIVILEGES ON DATABASE "store" TO "Mohammed_Salah";
-* To make connection between user and development database, write the following command:
-  GRANT ALL PRIVILEGES ON DATABASE "Data_Test" TO "Mo_Test";
+* To create store database, write the following command:  
+
+      CREATE DATABASE store;
+    
+- You will need to send also access token in header
+* To create Data_Test database, write the following command:  
+  
+        CREATE DATABASE "Data_Test";
+        
+* To create user with password for production database, write the following command:  
+
+      CREATE USER "Mohammed_Salah" WITH PASSWORD 'Mohammed123#';
+  
+* To create user with password for development database, write the following command:  
+
+       CREATE USER "Mo_Test" WITH PASSWORD 'Mohammed123#'; 
+  
+* To make connection between user and production database, write the following command:  
+
+      GRANT ALL PRIVILEGES ON DATABASE "store" TO "Mohammed_Salah";
+  
+* To make connection between user and development database, write the following command:  
+
+      GRANT ALL PRIVILEGES ON DATABASE "Data_Test" TO "Mo_Test";
 
 ### You need to add .env in root
 
