@@ -102,22 +102,45 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Product
 
-- id
-- name
-- price
-- category
+                                     Table "public.product"
+
+Column | Type | Collation | Nullable | Default
+----------+------------------------+-----------+----------+-------------------------------------
+id | integer | | not null | nextval('product_id_seq'::regclass)
+name | character varying(100) | | not null |
+price | integer | | not null |
+category | character varying(50) | | not null |
+Indexes:
+"product_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+TABLE "orders" CONSTRAINT "orders_product_ID_fkey" FOREIGN KEY ("product_ID") REFERENCES product(id)
 
 #### User
 
-- id
-- firstName
-- lastName
-- password
+                                     Table "public.username"
+
+Column | Type | Collation | Nullable | Default
+-----------+-----------------------+-----------+----------+--------------------------------------
+id | integer | | not null | nextval('username_id_seq'::regclass)
+firstname | character varying(50) | | not null |
+lastname | character varying(50) | | not null |
+password | text | | not null |
+Indexes:
+"username_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+TABLE "orders" CONSTRAINT "orders_user_ID_fkey" FOREIGN KEY ("user_ID") REFERENCES username(id)
 
 #### Orders
 
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+                        Table "public.orders"
+
+Column | Type | Collation | Nullable | Default
+------------+-----------------------+-----------+----------+---------
+id | integer | | not null |
+product_ID | integer | | not null |
+user_ID | integer | | not null |
+quantity | integer | | not null |
+status | character varying(50) | | not null |
+Foreign-key constraints:
+"orders_product_ID_fkey" FOREIGN KEY ("product_ID") REFERENCES product(id)
+"orders_user_ID_fkey" FOREIGN KEY ("user_ID") REFERENCES username(id)
