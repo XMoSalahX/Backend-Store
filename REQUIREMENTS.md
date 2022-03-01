@@ -97,20 +97,25 @@ These are the notes from a meeting with the frontend developer that describe wha
 
     - You will need to send access token in header
 
+**GET request "/allorderproduct": to display all order product**
+
+    - You will need to send access token in header
+
 ## Data Shapes
 
-![Database schema](https://i.ibb.co/JqFg4JP/Untitled-1.png)
+![Database schema](https://i.ibb.co/KsJZWRh/Untitled-3.png)
 
 #### Product
 
-                                     Table "public.product"
+                            | Table "public.product" |
 
-Column | Type | Collation | Nullable | Default
-----------+------------------------+-----------+----------+-------------------------------------
-id | integer | | not null | nextval('product_id_seq'::regclass)
-name | character varying(100) | | not null |
-price | integer | | not null |
-category | character varying(50) | | not null |
+| Column   | Type                   | Collation | Nullable | Default                             |
+| -------- | ---------------------- | --------- | -------- | ----------------------------------- |
+| id       | integer                |           | not null | nextval('product_id_seq'::regclass) |
+| name     | character varying(100) |           | not null |
+| price    | integer                |           | not null |
+| category | character varying(50)  |           | not null |
+
 Indexes:
 "product_pkey" PRIMARY KEY, btree (id)
 Referenced by:
@@ -118,14 +123,15 @@ TABLE "orders" CONSTRAINT "orders_product_ID_fkey" FOREIGN KEY ("product_ID") RE
 
 #### User
 
-                                     Table "public.username"
+                        | Table "public.username" |
 
-Column | Type | Collation | Nullable | Default
------------+-----------------------+-----------+----------+--------------------------------------
-id | integer | | not null | nextval('username_id_seq'::regclass)
-firstname | character varying(50) | | not null |
-lastname | character varying(50) | | not null |
-password | text | | not null |
+| Column    | Type                  | Collation | Nullable | Default                              |
+| --------- | --------------------- | --------- | -------- | ------------------------------------ |
+| id        | integer               |           | not null | nextval('username_id_seq'::regclass) |
+| firstname | character varying(50) |           | not null |
+| lastname  | character varying(50) |           | not null |
+| password  | text                  |           | not null |
+
 Indexes:
 "username_pkey" PRIMARY KEY, btree (id)
 Referenced by:
@@ -133,15 +139,29 @@ TABLE "orders" CONSTRAINT "orders_user_ID_fkey" FOREIGN KEY ("user_ID") REFERENC
 
 #### Orders
 
-                        Table "public.orders"
+                        | Table "public.orders" |
 
-Column | Type | Collation | Nullable | Default
-------------+-----------------------+-----------+----------+---------
-id | integer | | not null |
-product_ID | integer | | not null |
-user_ID | integer | | not null |
-quantity | integer | | not null |
-status | character varying(50) | | not null |
+| Column     | Type                  | Collation | Nullable | Default |
+| ---------- | --------------------- | --------- | -------- | ------- |
+| id         | integer               |           | not null |
+| product_ID | integer               |           | not null |
+| user_ID    | integer               |           | not null |
+| quantity   | integer               |           | not null |
+| status     | character varying(50) |           | not null |
+
 Foreign-key constraints:
 "orders_product_ID_fkey" FOREIGN KEY ("product_ID") REFERENCES product(id)
 "orders_user_ID_fkey" FOREIGN KEY ("user_ID") REFERENCES username(id)
+
+#### Order_Product
+
+                        | Table "public.order_product" |
+
+| Column    | Type    | Collation | Nullable | Default |
+| --------- | ------- | --------- | -------- | ------- |
+| userid    | integer |           | not null |
+| productid | integer |           | not null |
+
+Foreign-key constraints:
+"order_product_productid_fkey" FOREIGN KEY (productid) REFERENCES product(id)
+"order_product_userid_fkey" FOREIGN KEY (userid) REFERENCES username(id)
