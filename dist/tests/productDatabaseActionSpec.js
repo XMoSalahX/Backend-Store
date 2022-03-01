@@ -12,6 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const product_model_1 = require("../models/product_model");
 const product = new product_model_1.Add_Product_Class();
 describe("Check product database action: ", () => {
+    it("CreateProduct function has been defined", () => {
+        expect(product.CreateProduct).toBeDefined();
+    });
+    it("DisplayAllProduct function has been defined", () => {
+        expect(product.DisplayAllProduct).toBeDefined();
+    });
+    it("DisplaySpecificProduct function has been defined", () => {
+        expect(product.DisplaySpecificProduct).toBeDefined();
+    });
     it('The connection to the endpoint "/newproduct" and database action has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield product
             .CreateProduct({

@@ -22,7 +22,6 @@ class Add_Order_Class {
                 const conn = yield database_1.default.connect();
                 const tablerow = yield conn.query(checktable, [P.user_ID]);
                 let order_id;
-                console.log(P.user_ID + " form model");
                 if (tablerow.rows.length === 0) {
                     order_id = 1;
                 }
@@ -36,7 +35,6 @@ class Add_Order_Class {
                         order_id = LastOrder.rows[0].id + 1;
                     }
                 }
-                console.log(P.user_ID + " form model");
                 const insert = 'INSERT INTO orders(id,"product_ID","user_ID",quantity,status) VALUES($1,$2,$3,$4,$5) RETURNING *';
                 const insertProduct = yield conn.query(insert, [
                     order_id,
@@ -59,7 +57,6 @@ class Add_Order_Class {
                 const CheckCompeletORNot = "SELECT * FROM orders WHERE id=($1) LIMIT 1";
                 const conn = yield database_1.default.connect();
                 const resultOfCheck = yield conn.query(CheckCompeletORNot, [orderId]);
-                console.log(resultOfCheck.rows[0].status);
                 if (resultOfCheck.rows[0].status === "Complete") {
                     return null;
                 }

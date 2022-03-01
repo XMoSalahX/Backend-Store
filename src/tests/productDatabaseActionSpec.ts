@@ -3,6 +3,18 @@ import { Add_Product_Class } from "../models/product_model";
 const product = new Add_Product_Class();
 
 describe("Check product database action: ", () => {
+  it("CreateProduct function has been defined", () => {
+    expect(product.CreateProduct).toBeDefined();
+  });
+
+  it("DisplayAllProduct function has been defined", () => {
+    expect(product.DisplayAllProduct).toBeDefined();
+  });
+
+  it("DisplaySpecificProduct function has been defined", () => {
+    expect(product.DisplaySpecificProduct).toBeDefined();
+  });
+
   it('The connection to the endpoint "/newproduct" and database action has been successful.', async () => {
     await product
       .CreateProduct({
