@@ -34,12 +34,5 @@ describe("Check order database action: ", () => {
         yield order.Make_Order(1).then((res) => {
             expect(res).toEqual("Complete");
         });
-        // const response = await request
-        //   .post("/makeorder")
-        //   .set("Authorization", "Bearer " + token)
-        //   .send({
-        //     orderId: 1,
-        //   });
-        // expect(response.status).toBe(200);
     }));
 });
