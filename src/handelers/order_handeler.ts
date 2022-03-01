@@ -15,6 +15,7 @@ const IntoCard = async (req: Request, res: Response) => {
       quantity: req.body.quantity as number,
       status: req.body.status as string,
     };
+    console.log(req.body.product_ID + "form handeler");
     const add_product = await order.To_Card(productData);
     res.json(add_product);
   } catch (err) {
@@ -27,7 +28,7 @@ const Make_Order = async (req: Request, res: Response) => {
     const authHeader: string = req.headers.authorization as string;
     const token: string = authHeader.split(" ")[1];
     jwt.verify(token, process.env.SECRET_KEY as string);
-    const confirm = await order.Make_Order(req.body.orderId);
+    const confirm = await order.Make_Order(req.body.orderId, req.body.userID);
     res.status(200);
     res.json(confirm);
   } catch (err) {

@@ -22,7 +22,7 @@ describe("Check order database action: ", () => {
   });
 
   it('The connection to the endpoint "/makeorder" has been successful.', async () => {
-    await order.Make_Order(1).then((res) => {
+    await order.Make_Order(1, 1).then((res) => {
       expect(res).toEqual("Complete");
     });
   });

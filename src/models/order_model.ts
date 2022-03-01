@@ -11,16 +11,16 @@ export type Add_Order_Type = {
 export class Add_Order_Class {
   async To_Card(P: Add_Order_Type) {
     try {
-      const checktable = "SELECT * FROM orders LIMIT 1";
+      const checktable = 'SELECT * FROM orders WHERE "user_ID"=($1) LIMIT 1';
       const conn = await Client.connect();
-      const tablerow = await conn.query(checktable);
+      const tablerow = await conn.query(checktable, [P.user_ID]);
       let order_id;
+      console.log(P.user_ID + " form model");
       if (tablerow.rows.length === 0) {
         order_id = 1;
       } else {
         const sqlCheckId =
           'SELECT id,status FROM orders WHERE "user_ID"=($1) ORDER BY id DESC LIMIT 1';
-
         const LastOrder = await conn.query(sqlCheckId, [P.user_ID]);
         if (LastOrder.rows[0].status === "Active") {
           order_id = LastOrder.rows[0].id;
@@ -28,6 +28,7 @@ export class Add_Order_Class {
           order_id = LastOrder.rows[0].id + 1;
         }
       }
+      console.log(P.user_ID + " form model");
       const insert =
         'INSERT INTO orders(id,"product_ID","user_ID",quantity,status) VALUES($1,$2,$3,$4,$5) RETURNING *';
       const insertProduct = await conn.query(insert, [
@@ -44,12 +45,12 @@ export class Add_Order_Class {
     }
   }
 
-  async Make_Order(orderId: number) {
+  async Make_Order(orderId: number, userID: number) {
     try {
       const sql =
-        "UPDATE orders SET status=('Complete') WHERE id=($1) RETURNING *";
+        "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
       const conn = await Client.connect();
-      const result = await conn.query(sql, [orderId]);
+      const result = await conn.query(sql, [orderId, userID]);
       conn.release();
 
       return result.rows[0].status;

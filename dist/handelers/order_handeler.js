@@ -26,6 +26,7 @@ const IntoCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             quantity: req.body.quantity,
             status: req.body.status,
         };
+        console.log(req.body.product_ID + "form handeler");
         const add_product = yield order.To_Card(productData);
         res.json(add_product);
     }
@@ -38,7 +39,7 @@ const Make_Order = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const authHeader = req.headers.authorization;
         const token = authHeader.split(" ")[1];
         jsonwebtoken_1.default.verify(token, process.env.SECRET_KEY);
-        const confirm = yield order.Make_Order(req.body.orderId);
+        const confirm = yield order.Make_Order(req.body.orderId, req.body.userID);
         res.status(200);
         res.json(confirm);
     }

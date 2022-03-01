@@ -31,7 +31,7 @@ describe("Check order database action: ", () => {
         });
     }));
     it('The connection to the endpoint "/makeorder" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
-        yield order.Make_Order(1).then((res) => {
+        yield order.Make_Order(1, 1).then((res) => {
             expect(res).toEqual("Complete");
         });
     }));

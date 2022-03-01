@@ -18,10 +18,11 @@ class Add_Order_Class {
     To_Card(P) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const checktable = "SELECT * FROM orders LIMIT 1";
+                const checktable = 'SELECT * FROM orders WHERE "user_ID"=($1) LIMIT 1';
                 const conn = yield database_1.default.connect();
-                const tablerow = yield conn.query(checktable);
+                const tablerow = yield conn.query(checktable, [P.user_ID]);
                 let order_id;
+                console.log(P.user_ID + " form model");
                 if (tablerow.rows.length === 0) {
                     order_id = 1;
                 }
@@ -35,6 +36,7 @@ class Add_Order_Class {
                         order_id = LastOrder.rows[0].id + 1;
                     }
                 }
+                console.log(P.user_ID + " form model");
                 const insert = 'INSERT INTO orders(id,"product_ID","user_ID",quantity,status) VALUES($1,$2,$3,$4,$5) RETURNING *';
                 const insertProduct = yield conn.query(insert, [
                     order_id,
@@ -51,12 +53,12 @@ class Add_Order_Class {
             }
         });
     }
-    Make_Order(orderId) {
+    Make_Order(orderId, userID) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const sql = "UPDATE orders SET status=('Complete') WHERE id=($1) RETURNING *";
+                const sql = "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
                 const conn = yield database_1.default.connect();
-                const result = yield conn.query(sql, [orderId]);
+                const result = yield conn.query(sql, [orderId, userID]);
                 conn.release();
                 return result.rows[0].status;
             }
