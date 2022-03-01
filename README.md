@@ -15,8 +15,6 @@
 
       CREATE DATABASE store;
 
-- You will need to send also access token in header
-
 * To create Data_Test database, write the following command:
 
         CREATE DATABASE "Data_Test";
