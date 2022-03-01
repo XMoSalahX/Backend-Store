@@ -51,6 +51,7 @@ export class Add_Order_Class {
       const conn = await Client.connect();
       const result = await conn.query(sql, [orderId]);
       conn.release();
+
       return result.rows[0].status;
     } catch (err) {
       throw new Error("Error happen in make order fun in model." + err);

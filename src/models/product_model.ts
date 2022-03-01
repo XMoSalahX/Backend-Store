@@ -41,7 +41,7 @@ export class Add_Product_Class {
     }
   }
 
-  async DisplaySpecificProduct(id: number): Promise<Product_Type[]> {
+  async DisplaySpecificProduct(id: number): Promise<Product_Type> {
     try {
       const conn = await Client.connect();
       const sql = "SELECT * FROM Product WHERE id=($1)";

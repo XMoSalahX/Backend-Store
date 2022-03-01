@@ -61,7 +61,7 @@ export class Add_User_Class {
     }
   }
 
-  async showSpecficUser(id: number): Promise<Show_User_Type[]> {
+  async showSpecficUser(id: number): Promise<Show_User_Type> {
     try {
       const conn = await Client.connect();
       const sql = "SELECT * FROM Username WHERE id=($1)";

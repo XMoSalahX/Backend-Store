@@ -11,28 +11,29 @@
 
 - In psql terminal:
 
-* To create store database, write the following command:  
+* To create store database, write the following command:
 
       CREATE DATABASE store;
-    
+
 - You will need to send also access token in header
-* To create Data_Test database, write the following command:  
-  
+
+* To create Data_Test database, write the following command:
+
         CREATE DATABASE "Data_Test";
-        
-* To create user with password for production database, write the following command:  
+
+* To create user with password for production database, write the following command:
 
       CREATE USER "Mohammed_Salah" WITH PASSWORD 'Mohammed123#';
-  
-* To create user with password for development database, write the following command:  
 
-       CREATE USER "Mo_Test" WITH PASSWORD 'Mohammed123#'; 
-  
-* To make connection between user and production database, write the following command:  
+* To create user with password for development database, write the following command:
+
+       CREATE USER "Mo_Test" WITH PASSWORD 'Mohammed123#';
+
+* To make connection between user and production database, write the following command:
 
       GRANT ALL PRIVILEGES ON DATABASE "store" TO "Mohammed_Salah";
-  
-* To make connection between user and development database, write the following command:  
+
+* To make connection between user and development database, write the following command:
 
       GRANT ALL PRIVILEGES ON DATABASE "Data_Test" TO "Mo_Test";
 
@@ -48,7 +49,7 @@ ENV=dev
 PORT=8002  
 BCRYPT_PASSWORD=bla-bla-bla-mo-salah  
 SALT_ROUNDS=10  
-SECRET_KEY=MoSalah  
+SECRET_KEY=MoSalah
 
 ---
 
@@ -76,13 +77,6 @@ This data is not sensitive and has been added for testing purposes only
 ## How to run server
 
 - npm run start: to start nodemon package to start live server
-
----
-
-**NOTE**
-You will need to add data in the user and product database so that no errors occur during the test, or the test is run twice.
-
----
 
 ---
 
