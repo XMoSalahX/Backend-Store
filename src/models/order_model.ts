@@ -47,13 +47,21 @@ export class Add_Order_Class {
 
   async Make_Order(orderId: number, userID: number) {
     try {
-      const sql =
-        "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
+      const CheckCompeletORNot = "SELECT * FROM orders WHERE id=($1) LIMIT 1";
       const conn = await Client.connect();
-      const result = await conn.query(sql, [orderId, userID]);
-      conn.release();
+      const resultOfCheck = await conn.query(CheckCompeletORNot, [orderId]);
+      console.log(resultOfCheck.rows[0].status);
+      if (resultOfCheck.rows[0].status === "Complete") {
+        return null;
+      } else {
+        const sql =
+          "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
 
-      return result.rows[0].status;
+        const result = await conn.query(sql, [orderId, userID]);
+        conn.release();
+
+        return result.rows[0].status;
+      }
     } catch (err) {
       throw new Error("Error happen in make order fun in model." + err);
     }

@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const order_model_1 = require("../models/order_model");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const order_product_1 = require("../models/order_product");
+const productOrder = new order_product_1.Order_Product_Class();
 const order = new order_model_1.Add_Order_Class();
 const IntoCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -26,7 +28,6 @@ const IntoCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             quantity: req.body.quantity,
             status: req.body.status,
         };
-        console.log(req.body.product_ID + "form handeler");
         const add_product = yield order.To_Card(productData);
         res.json(add_product);
     }
@@ -42,6 +43,7 @@ const Make_Order = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const confirm = yield order.Make_Order(req.body.orderId, req.body.userID);
         res.status(200);
         res.json(confirm);
+        productOrder.putOnOrderProduct(req.body.userID, req.body.orderId);
     }
     catch (err) {
         throw new Error("Error happen in make order fun in handeler." + err);

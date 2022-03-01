@@ -56,11 +56,19 @@ class Add_Order_Class {
     Make_Order(orderId, userID) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const sql = "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
+                const CheckCompeletORNot = "SELECT orders WHERE id=($1) LIMIT 1";
                 const conn = yield database_1.default.connect();
-                const result = yield conn.query(sql, [orderId, userID]);
-                conn.release();
-                return result.rows[0].status;
+                const resultOfCheck = yield conn.query(CheckCompeletORNot, [orderId]);
+                console.log(resultOfCheck.rows[0].status);
+                if (resultOfCheck.rows[0].status === "Complete") {
+                    return null;
+                }
+                else {
+                    const sql = "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
+                    const result = yield conn.query(sql, [orderId, userID]);
+                    conn.release();
+                    return result.rows[0].status;
+                }
             }
             catch (err) {
                 throw new Error("Error happen in make order fun in model." + err);
