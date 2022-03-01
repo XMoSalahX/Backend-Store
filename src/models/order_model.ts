@@ -15,7 +15,6 @@ export class Add_Order_Class {
       const conn = await Client.connect();
       const tablerow = await conn.query(checktable, [P.user_ID]);
       let order_id;
-      console.log(P.user_ID + " form model");
       if (tablerow.rows.length === 0) {
         order_id = 1;
       } else {
@@ -28,7 +27,6 @@ export class Add_Order_Class {
           order_id = LastOrder.rows[0].id + 1;
         }
       }
-      console.log(P.user_ID + " form model");
       const insert =
         'INSERT INTO orders(id,"product_ID","user_ID",quantity,status) VALUES($1,$2,$3,$4,$5) RETURNING *';
       const insertProduct = await conn.query(insert, [
@@ -50,16 +48,13 @@ export class Add_Order_Class {
       const CheckCompeletORNot = "SELECT * FROM orders WHERE id=($1) LIMIT 1";
       const conn = await Client.connect();
       const resultOfCheck = await conn.query(CheckCompeletORNot, [orderId]);
-      console.log(resultOfCheck.rows[0].status);
       if (resultOfCheck.rows[0].status === "Complete") {
         return null;
       } else {
         const sql =
           "UPDATE orders SET status=('Complete') WHERE id=($1) AND \"user_ID\"=($2) RETURNING *";
-
         const result = await conn.query(sql, [orderId, userID]);
         conn.release();
-
         return result.rows[0].status;
       }
     } catch (err) {

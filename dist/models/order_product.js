@@ -15,14 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order_Product_Class = void 0;
 const database_1 = __importDefault(require("../database"));
 class Order_Product_Class {
-    putOnOrderProduct(userID, ProductId) {
+    putOnOrderProduct(userID, orderId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const sqlAdd = "INSERT INTO order_product(userID,ProductID) VALUES($1,$2) ";
                 const conn = yield database_1.default.connect();
-                const addToTable = yield conn.query(sqlAdd, [userID, ProductId]);
-                conn.release();
-                return addToTable.rows;
+                const sqlcheck = "SELECT * FROM order_product WHERE productid=($1)";
+                const doCheck = yield conn.query(sqlcheck, [orderId]);
+                if (doCheck.rows.length === 0) {
+                    const addToTable = yield conn.query(sqlAdd, [userID, orderId]);
+                    conn.release();
+                    return addToTable.rows;
+                }
+                else {
+                    return null;
+                }
             }
             catch (err) {
                 throw new Error("Error found in put on order product in model." + err);

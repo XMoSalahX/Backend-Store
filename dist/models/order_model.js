@@ -56,7 +56,7 @@ class Add_Order_Class {
     Make_Order(orderId, userID) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const CheckCompeletORNot = "SELECT orders WHERE id=($1) LIMIT 1";
+                const CheckCompeletORNot = "SELECT * FROM orders WHERE id=($1) LIMIT 1";
                 const conn = yield database_1.default.connect();
                 const resultOfCheck = yield conn.query(CheckCompeletORNot, [orderId]);
                 console.log(resultOfCheck.rows[0].status);
