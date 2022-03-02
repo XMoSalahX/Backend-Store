@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const order_product_1 = require("../models/order_product");
+const order = new order_product_1.Order_Product_Class();
+describe("Check all order product function: ", () => {
+    it("putOnOrderProduct function has been defined", () => {
+        expect(order.putOnOrderProduct).toBeDefined();
+    });
+    it("showAllProductOrder function has been defined", () => {
+        expect(order.showAllProductOrder).toBeDefined();
+    });
+});

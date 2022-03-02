@@ -12,13 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const order_model_1 = require("../models/order_model");
 const order = new order_model_1.Add_Order_Class();
 describe("Check order database action: ", () => {
-    it("To_Card function has been defined", () => {
-        expect(order.To_Card).toBeDefined();
-    });
-    it("Make_Order function has been defined", () => {
-        expect(order.Make_Order).toBeDefined();
-    });
-    it('The connection to the endpoint "/tocard" has and database action been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/tocard" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield order
             .To_Card({
             product_ID: 1,
@@ -36,7 +30,7 @@ describe("Check order database action: ", () => {
             });
         });
     }));
-    it('The connection to the endpoint "/makeorder" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/makeorder" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield order.Make_Order(1, 1).then((res) => {
             expect(res).toEqual("Complete");
         });

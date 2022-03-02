@@ -2,15 +2,7 @@ import { Add_Order_Class } from "../models/order_model";
 
 const order = new Add_Order_Class();
 describe("Check order database action: ", () => {
-  it("To_Card function has been defined", () => {
-    expect(order.To_Card).toBeDefined();
-  });
-
-  it("Make_Order function has been defined", () => {
-    expect(order.Make_Order).toBeDefined();
-  });
-
-  it('The connection to the endpoint "/tocard" has and database action been successful.', async () => {
+  it('Database action to the endpoint "/tocard" has been successful.', async () => {
     await order
       .To_Card({
         product_ID: 1,
@@ -29,7 +21,7 @@ describe("Check order database action: ", () => {
       });
   });
 
-  it('The connection to the endpoint "/makeorder" has been successful.', async () => {
+  it('Database action to the endpoint "/makeorder" has been successful.', async () => {
     await order.Make_Order(1, 1).then((res) => {
       expect(res).toEqual("Complete");
     });

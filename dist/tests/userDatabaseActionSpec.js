@@ -12,19 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_name_model_1 = require("../models/user_name_model");
 const user = new user_name_model_1.Add_User_Class();
 describe("Check user database action: ", () => {
-    it("createUser function has been defined", () => {
-        expect(user.createUser).toBeDefined();
-    });
-    it("auth function has been defined", () => {
-        expect(user.auth).toBeDefined();
-    });
-    it("showAllUser function has been defined", () => {
-        expect(user.showAllUser).toBeDefined();
-    });
-    it("showSpecficUser function has been defined", () => {
-        expect(user.showSpecficUser).toBeDefined();
-    });
-    it('The connection to the endpoint "/newuser" and database action has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/newuser" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield user.createUser({
             firstName: "mos3ad",
             lastName: "Salah",
@@ -34,16 +22,16 @@ describe("Check user database action: ", () => {
             id: 6,
         });
     }));
-    it('The connection to the endpoint "/authuser" and database action has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/authuser" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield user.auth(1, "Mohammed123#");
         expect(response).toBeTruthy();
     }));
-    it('The connection to the endpoint "/showalluser" and database action has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/showalluser" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield user.showAllUser().then((res) => {
             expect(res[0].id).toBe(1);
         });
     }));
-    it('The connection to the endpoint "/showspecuser/1" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/showspecuser/1" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield user.showSpecficUser(1).then((res) => {
             expect(res.id).toEqual(1);
         });

@@ -8,13 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const order_product_1 = require("../models/order_product");
-const order = new order_product_1.Order_Product_Class();
-describe("Check order product database action: ", () => {
-    it('Database action to the endpoint "/allorderproduct" has and database action been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
-        yield order.showAllProductOrder().then((res) => {
-            expect(res).toEqual([]);
+const supertest_1 = __importDefault(require("supertest"));
+const server_1 = __importDefault(require("../server"));
+const request = (0, supertest_1.default)(server_1.default);
+describe("Check order product EndPoint: ", () => {
+    it('The connection to the endpoint "/allorderproduct" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+        () => __awaiter(void 0, void 0, void 0, function* () {
+            const response = yield request.get("/allorderproduct");
+            expect(response.status).toBe(200);
         });
     }));
 });

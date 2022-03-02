@@ -12,16 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const product_model_1 = require("../models/product_model");
 const product = new product_model_1.Add_Product_Class();
 describe("Check product database action: ", () => {
-    it("CreateProduct function has been defined", () => {
-        expect(product.CreateProduct).toBeDefined();
-    });
-    it("DisplayAllProduct function has been defined", () => {
-        expect(product.DisplayAllProduct).toBeDefined();
-    });
-    it("DisplaySpecificProduct function has been defined", () => {
-        expect(product.DisplaySpecificProduct).toBeDefined();
-    });
-    it('The connection to the endpoint "/newproduct" and database action has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/newproduct" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield product
             .CreateProduct({
             name: "Samsung A51",
@@ -37,18 +28,14 @@ describe("Check product database action: ", () => {
             });
         });
     }));
-    it('The connection to the endpoint "/allproduct" and database action has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/allproduct" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield product.DisplayAllProduct().then((res) => {
             expect(res[0].id).toEqual(1);
         });
     }));
-    it('The connection to the endpoint "/specificproduct/1" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Database action to the endpoint "/specificproduct/1" has been successful.', () => __awaiter(void 0, void 0, void 0, function* () {
         yield product.DisplaySpecificProduct(1).then((res) => {
             expect(res.id).toEqual(1);
         });
-        // const response = await request
-        //   .get("/specificproduct/2")
-        //   .set("Authorization", "Bearer " + token);
-        // expect(response.status).toBe(200);
     }));
 });
